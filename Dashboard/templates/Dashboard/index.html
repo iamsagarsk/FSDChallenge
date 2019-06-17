@@ -1,0 +1,26 @@
+{% extends 'Dashboard/base.html' %}
+{% block title %} TOP APPS {% endblock %}
+{% block body %} 
+<form method="POST" action="/">
+<button type="submit" class="btn btn-block btn-sm btn-primary"> Update</button>
+</form>
+
+<table border = '1'>
+	<tr><th>Icon</th><th>Title</th><th>Developer</th><th>Rating</th></tr>
+
+{% for rows in record %}
+<tr>
+	<td><img src = {{ rows.icon }} width="50px" height="50px"></td>
+	<td>
+		<form method="POST" action="/moreDetails">
+				<input type="hidden" name="id_search" value="{{ rows.title }}">
+					<!-- <input type="submit" value="More Details"> -->
+				<button type="submit" class="btn btn-block btn-sm btn-primary">FIND OUT MORE!</button>
+		</form>
+    </td>
+    <td>{{ rows.developer }}</td>
+    <td><p>Rating: {{ rows.score }}</p></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
